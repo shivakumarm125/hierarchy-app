@@ -13,21 +13,15 @@ class task {
 
 export const CarMan = () => {
 
-
   var tasks = [];
-  let checkPrevtask = [];
-  let checkNextTask = [];
 
   function tasksExtraction(data) {
 
     Object.keys(data).map(function (loops) {
-      checkPrevtask.push(data[loops]);
       let taskObj = new task(loops, data[loops].name, data[loops].prevTask, data[loops].nextTask);
       tasks.push(taskObj);
-      return <b>{checkPrevtask}</b>
+      return tasks;
     })
-    console.log(checkPrevtask);
-    console.log(checkNextTask);
   }
 
   function connectingLine(i) {
@@ -35,7 +29,6 @@ export const CarMan = () => {
       return <div>
         <svg width="300" height="300"><line x1="0" y1="0" x2="0" y2="350" stroke="black" /></svg>
       </div>
-
     }
 
   }
@@ -62,7 +55,7 @@ export const CarMan = () => {
 
     const squars = [];
     for (let i = 0; i < tasks.length; i++) {
-      squars.push(<div><div className="square" style={{ left: "990px", top: "50px" }}>
+      squars.push(<div key={i}><div className="square" style={{ left: "990px", top: "50px" }}>
         <div>
           <b>{tasks[i].taskname}</b>
         </div>
